@@ -1,18 +1,19 @@
 import React from "react"
-import Quiz from "./components/Quiz"
+import Question from "./components/Question"
 import { nanoid } from "nanoid"
 
 export default function App() {
-  const [quizzes, setQuizzes] = React.useState([])
+  const [questions, setQuestions] = React.useState([])
 
 
-
-  const quizzesElements = quizzes.map(quiz => {
+  const questionElements = questions.map(question => {
     return (
-      <Quiz
-        key={quiz.id}
-        question={quiz.question}
-        options={quiz.options}
+      <Question
+        id={question.id}
+        setQuestions={setQuestions}
+        key={question.id}
+        question={question.question}
+        options={question.options}
       />
     )
   })
@@ -20,25 +21,26 @@ export default function App() {
   const startGame = () => {
     fetch("https://opentdb.com/api.php?amount=5&category=21")
       .then(res => res.json())
-      .then(data => setQuizzes(
-        data.results.map(quizObject => {
+      .then(data => setQuestions(
+        data.results.map(questionObject => {
           return {
             id: nanoid(),
-            question: quizObject.question,
-            correctAnswer: quizObject.correct_answer,
-            options: [quizObject.correct_answer, ...quizObject.incorrect_answers]
+            question: questionObject.question,
+            correctAnswer: questionObject.correct_answer,
+            options: [questionObject.correct_answer, ...questionObject.incorrect_answers],
+            selectedAnswer: ""
           }
         })
       ))
   }
 
-  console.log(quizzes)
+  console.log(questions)
 
   return (
-    quizzes.length > 0
+    questions.length > 0
       ?
       <React.Fragment>
-        {quizzesElements}
+        {questionElements}
         <button>Check answers</button>
       </React.Fragment>
       :
