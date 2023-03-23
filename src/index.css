@@ -1,0 +1,125 @@
+html {
+    font-size: 16px
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    color: #293264;
+    background-color: #F5F7FB;
+}
+
+/* Typography */
+
+.option-container,
+.btn {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Layout */
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 90%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.initial-container {
+    padding: 0.5em 1em;
+}
+.initial-title {
+    font-size: 2rem;
+    margin-bottom: 0.25em;
+}
+.initial-description {
+    margin-bottom: 0.5em;
+}
+
+.question-container {
+    padding: 0.93em 0;
+    border-bottom: 1px solid #DBDEF0;
+    width: 100%;
+}
+
+.question-title {
+    font-size: 1rem;
+    margin-bottom: 0.75em;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
+    justify-items: center;
+    align-items: center;
+}
+
+.option-container {
+    border: 1px solid #293264;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.25em;
+}
+
+.score-text {
+    margin-bottom: 0.5em;
+}
+
+/* Buttons */
+.btn {
+    font-weight: 600;
+    background-color: #4D5B9E;
+    color: #F5F7FB;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 10px;
+    font-size: inherit;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .options-container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .score-container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .score-text {
+        margin-bottom: 0;
+        margin-right: 0.5em;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
+}

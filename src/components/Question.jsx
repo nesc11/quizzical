@@ -21,8 +21,12 @@ export default function Question(props) {
         })
     }
 
+
+
     const optionElements = options.map(option => {
         return <Option
+            ready={props.ready}
+            correctAnswer={props.correctAnswer}
             isSelected={option.isSelected}
             handleClick={() => select(option.id)}
             key={option.id}
@@ -41,9 +45,9 @@ export default function Question(props) {
     }, [options])
 
     return (
-        <div>
-            <h3>{props.question}</h3>
-            <div>{optionElements}</div>
+        <div className="question-container">
+            <h3 className="question-title">{props.question}</h3>
+            <div className="options-container">{optionElements}</div>
         </div>
 
     )
