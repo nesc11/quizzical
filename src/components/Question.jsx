@@ -1,54 +1,48 @@
-import React from "react"
-import { nanoid } from "nanoid"
-import Option from "./Option"
+import { generateOptions } from "../utils"
+import { Option } from "./Option"
 
-export default function Question(props) {
+import { useState, useEffect } from "react"
 
-    const [options, setOptions] = React.useState(props.options.map(option => ({
-        isSelected: false,
-        value: option,
-        id: nanoid()
-    })))
-    const selectedAnswer = options.find(option => option.isSelected)
-        ? options.find(option => option.isSelected).value
-        : ""
+export const Question = ({ question, optionsArr, setQuestions, idQuestion, correctAnswer, checkText }) => {
+    const [options, setOptions] = useState(generateOptions(optionsArr))
 
-    const select = (id) => {
+    const handleClick = (id) => {
         setOptions(prevOptions => {
-            return prevOptions.map(option => {
-                return option.id === id ? { ...option, isSelected: !option.isSelected } : { ...option, isSelected: false }
+            return prevOptions.map(item => {
+                return item.id === id ? {...item, isSelected: !item.isSelected} : {...item, isSelected: false}
             })
         })
     }
 
-
-
-    const optionElements = options.map(option => {
-        return <Option
-            ready={props.ready}
-            correctAnswer={props.correctAnswer}
-            isSelected={option.isSelected}
-            handleClick={() => select(option.id)}
-            key={option.id}
-            value={option.value}
-        />
+    const optionElements = options.map(item => {
+        return (
+            <Option
+                correctAnswer={correctAnswer}
+                checkText={checkText}
+                key={item.id}
+                option={item.option}
+                isSelected={item.isSelected}
+                handleClick={() => handleClick(item.id)}
+            />
+        )
     })
 
-    React.useEffect(() => {
-        props.setQuestions(prevQuestions => {
+
+    useEffect(() => {
+        setQuestions(prevQuestions => {
+            const selectedOption = options.find(option => option.isSelected) ? options.find(option => option.isSelected).option : null
             return prevQuestions.map(question => {
-                return question.id === props.id ?
-                    { ...question, selectedAnswer: selectedAnswer } :
-                    question
+                return question.id === idQuestion ? {...question, selectedOption: selectedOption} : question
             })
         })
     }, [options])
 
     return (
         <div className="question-container">
-            <h3 className="question-title">{props.question}</h3>
-            <div className="options-container">{optionElements}</div>
+            <h3 className="question-title">{question}</h3>
+            <div className="options-container">
+                {optionElements}
+            </div>
         </div>
-
     )
 }

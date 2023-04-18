@@ -1,22 +1,27 @@
-import React, { useDeferredValue } from "react";
+export const Option = ({option, isSelected, handleClick, correctAnswer, checkText }) => {
 
-export default function Option(props) {
-
-    const setColor = () => {
-        let color = props.isSelected ? "#D6DBF5" : "white"
-        if (props.ready) {
-            color = props.isSelected
-                ? (props.correctAnswer === props.value ? "#94D7A2" : "#F8BCBC")
-                : "white"
-        }
-        return color
+    let styles = {
+        backgroundColor: isSelected ? "#D6DBF5" : null,
+        border: isSelected ? "none" : "1px solid #4D5B9E"
     }
 
-    const styles = {
-        backgroundColor: setColor()
+    if (checkText && correctAnswer === option) {
+        styles = {
+            backgroundColor: "#94D7A2"
+        }
+    } else if (checkText && isSelected) {
+        styles = {
+            backgroundColor: "#F8BCBC",
+            opacity: "0.5"
+        }
+    } else if (checkText) {
+        styles = {
+            opacity: "0.5",
+            border: "1px solid #4D5B9E"
+        }
     }
 
     return (
-        <span className="option-container" style={styles} onClick={props.handleClick}>{props.value}</span>
+        <span onClick={handleClick} style={styles}>{option}</span>
     )
 }

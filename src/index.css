@@ -1,7 +1,3 @@
-html {
-    font-size: 16px
-}
-
 *,
 *::before,
 *::after {
@@ -10,116 +6,141 @@ html {
     padding: 0;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
-    font-family: 'Karla', sans-serif;
-    color: #293264;
-    background-color: #F5F7FB;
-}
-
-/* Typography */
-
-.option-container,
-.btn {
     font-family: 'Inter', sans-serif;
+    background-color: #F5F7FB;
+    color: #293264;
 }
 
-/* Layout */
-
-#root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 90%;
-    max-width: 850px;
-    margin: 0 auto;
-}
+/* INITIAL SCREEN */
 
 .initial-container {
-    padding: 0.5em 1em;
+    text-align: center;
+    min-height: 100vh;
+    padding-top: 35vh;
 }
-.initial-title {
+
+.app-title {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
     font-size: 2rem;
-    margin-bottom: 0.25em;
-}
-.initial-description {
     margin-bottom: 0.5em;
 }
 
+.initial-container p {
+    margin-bottom: 1.5rem;
+}
+
+
+/* BUTTONS */
+
+.btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 1rem 2rem;
+    background-color: #4D5B9E;
+    border: none;
+    border-radius: 10px;
+    color: #F5F7FB;
+}
+
+.check-btn {
+    font-weight: 600;
+    font-size: 0.7rem;
+}
+
+/* QUESTIONS SCREEN */
+.questions-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.check-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 0.5em;
+}
+
+.check-text {
+    font-size: 0.8rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* SINGLE QUESTION */
 .question-container {
-    padding: 0.93em 0;
+    padding: 1rem 0;
     border-bottom: 1px solid #DBDEF0;
-    width: 100%;
 }
 
 .question-title {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.6em;
     font-size: 1rem;
-    margin-bottom: 0.75em;
 }
 
+/* OPTIONS */
 .options-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5em;
-    justify-items: center;
-    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.option-container {
-    border: 1px solid #293264;
-    border-radius: 10px;
+.options-container span {
     padding: 0.5em 1em;
+    border-radius: 10px;
     text-align: center;
     font-weight: 500;
-    cursor: pointer;
+    font-size: 0.7rem;
 }
 
-.score-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1.25em;
+/* LOADING */
+.loading-text {
+    text-align: center;
+    margin-top: 45vh;
+    font-size: 2rem;
 }
 
-.score-text {
-    margin-bottom: 0.5em;
-}
-
-/* Buttons */
-.btn {
-    font-weight: 600;
-    background-color: #4D5B9E;
-    color: #F5F7FB;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 10px;
-    font-size: inherit;
-}
-
+/* HOVER */
+.options-container span:hover,
 .btn:hover {
     cursor: pointer;
 }
 
-@media (min-width: 768px) {
-    .options-container {
-        display: flex;
-        justify-content: space-around;
-    }
+@media (min-width: 500px) {
 
-    .score-container {
-        flex-direction: row;
-        justify-content: space-around;
+    .options-container span,
+    .check-btn,
+    .check-text {
+        font-size: 1rem;
     }
-    .score-text {
-        margin-bottom: 0;
-        margin-right: 0.5em;
+    .question-title {
+        font-size: 1.125rem;
     }
 }
 
-@media (min-width: 1024px) {
-    html {
-        font-size: 18px;
+@media (min-width: 700px) {
+
+    .options-container span,
+    .check-btn,
+    .check-text {
+        font-size: 1.125rem;
+    }
+    .question-title {
+        font-size: 1.25rem;
     }
 }
